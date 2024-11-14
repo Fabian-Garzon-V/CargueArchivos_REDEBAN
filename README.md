@@ -2,7 +2,7 @@
 # Cargue de Archivos REDEBAN
 
 ## Descripción del Proyecto
-Este proyecto facilita la carga de archivos de transacciones REDEBAN a una base de datos SQL Server. Incluye funciones para la descompresión de archivos en formato ZIP, el procesamiento y filtrado de datos en formato CSV, y la inserción de estos datos en SQL Server, todo mediante una interfaz gráfica de usuario.
+Este proyecto facilita la carga de archivos de transacciones REDEBAN a una base de datos SQL Server. Incluye funciones para la descompresión de archivos en formato ZIP, el procesamiento y filtrado de datos en formato txt, y la inserción de estos datos en SQL Server, todo mediante una interfaz gráfica de usuario.
 
 ## Características
 - **Descompresión de archivos**: Procesa archivos ZIP de manera recursiva, descomprimiendo archivos que cumplan con ciertos criterios de nombre.
@@ -33,18 +33,18 @@ Asegúrate de que el archivo `config.ini` esté configurado correctamente para c
 
 ```ini
 [Paths]
-source_path = ruta/al/directorio/de/origen
-destination_path = ruta/al/directorio/de/destino
-file_keyword = palabra_clave_para_filtrar_archivos
+source_path = ruta/al/directorio/de/origen/de/los/archivos/zip
+destination_path = ruta/al/directorio/de/destino/de/archivos/descomprimidos
+file_keyword = palabra_clave_para_filtrar_archivos #Solo recorrerá los archivos que contengan esta palabra
 
 [Database]
 server = nombre_del_servidor
 database = nombre_de_la_base
-table_data = nombre_de_la_tabla_datos
-table_control = nombre_de_la_tabla_control
-table_control_descompresion = nombre_de_la_tabla_control_descompresion
+table_data = nombre_de_la_tabla_datos #Donde ser cargarán los datos
+table_control = nombre_de_la_tabla_control #Tabla de control de archivos cargados previamente
+table_control_descompresion = nombre_de_la_tabla_control_descompresion #Tabla de control archivos descomprimidos previamente
 
-[Filters]
+[Filters] #Son los filtros que se realizarán en el dataframe
 filtro_1_tipo_producto = tipo_producto_1
 filtro_1_privada = valor1, valor2
 filtro_2_tipo_producto = tipo_producto_2
@@ -84,10 +84,14 @@ CargueArchivos_REDEBAN/
 ```
 
 ## Licencia
-Este proyecto está licenciado bajo la Licencia MIT.
+
 
 ## Contribuciones
 Las contribuciones son bienvenidas. Por favor, abre un "issue" para reportar problemas o enviar sugerencias.
 
 ## Contacto
-Para preguntas o comentarios, contacta a [tu_email@example.com].
+Para preguntas o comentarios, contacta a [fabian.garzon@heladospopsy.com].
+
+## Interfaz Login
+![Interfaz de Login REDEBAN](./images/InterfazLoginRedeban.png)
+
