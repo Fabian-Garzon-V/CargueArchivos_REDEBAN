@@ -1,0 +1,17 @@
+# Archivos de entorno y cache de Python
+__pycache__/
+*.py[cod]
+
+# Entornos virtuales
+venv/
+env/
+
+# Carpetas de salida de PyInstaller
+dist/
+build/
+*.spec
+
+# Archivos de log y temporales
+*.log
+resumen_carga.txt
+procesamiento.log

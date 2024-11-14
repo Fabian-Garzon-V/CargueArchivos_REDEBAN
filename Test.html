@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especificación del Proyecto: Cargue de archivos REDEBAN</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body { background-color: #f8f9fa; color: #343a40; }
+        .container { max-width: 960px; }
+        .section-title { background-color: #343a40; color: #ffffff; padding: 10px 15px; border-radius: 5px; margin-top: 30px; margin-bottom: 20px; }
+        h1, h2, h3 { color: #b11c5a; }
+        .list-group-item { background-color: #e9ecef; color: #343a40; }
+        .code-block { background-color: #f1f1f1; padding: 10px; border-radius: 5px; font-family: monospace; font-size: 0.9rem; white-space: pre-wrap; color: #212529; }
+        .code-block::before, .code-block::after { content: '```'; display: block; color: #b11c5a; }
+    </style>
+</head>
+<body>
+
+<div class="container my-5">
+    <h1 class="text-center mb-4">Especificación del Proyecto - Cargue de archivos REDEBAN</h1>
+    <p class="text-center text-muted">Sistema de Gestión de Archivos y Consolidación de Datos en SQL Server</p>
+
+    <section>
+        <h2 class="section-title">Descripción General del Proyecto</h2>
+        <p>Este proyecto desarrolla un sistema que permite la gestión, descompresión, procesamiento y carga de archivos de datos hacia una base de datos SQL Server. La interfaz gráfica permite a los usuarios cargar archivos, verificar duplicados y personalizar la configuración a través de un archivo <code>config.ini</code>, optimizando la gestión de datos en un entorno de procesamiento intensivo.</p>
+    </section>
+
+    <section>
+        <h2 class="section-title">Objetivos Específicos</h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Descompresión de archivos ZIP y verificación de duplicados.</li>
+            <li class="list-group-item">Transformación y carga de datos en SQL Server.</li>
+            <li class="list-group-item">Configuración flexible y personalizable mediante <code>config.ini</code>.</li>
+            <li class="list-group-item">Registro de eventos y errores en un archivo de log.</li>
+            <li class="list-group-item">Interfaz gráfica para una experiencia de usuario simplificada.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 class="section-title">Especificaciones Técnicas</h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item"><strong>Lenguaje de Programación:</strong> Python 3</li>
+            <li class="list-group-item"><strong>Framework de Interfaz Gráfica:</strong> customtkinter</li>
+            <li class="list-group-item"><strong>Base de Datos:</strong> SQL Server</li>
+            <li class="list-group-item"><strong>Archivo de Configuración:</strong> config.ini</li>
+            <li class="list-group-item"><strong>Librerías Necesarias:</strong> pyodbc, pandas, tkinter, configparser, zipfile, logging, sys, os</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 class="section-title">Requerimientos del Sistema</h2>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Sistema Operativo: Windows</li>
+            <li class="list-group-item">Python 3.6 o superior</li>
+            <li class="list-group-item">Controlador ODBC para SQL Server</li>
+            <li class="list-group-item">Permisos de escritura y acceso a SQL Server</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 class="section-title">Arquitectura del Proyecto</h2>
+        <p>El sistema está compuesto por módulos independientes para la descompresión, filtrado y carga de archivos en SQL Server. Cada módulo está diseñado para cumplir con una funcionalidad específica y está integrado en una interfaz gráfica común.</p>
+    </section>
+
+    <section>
+        <h2 class="section-title">Módulos y Funcionalidades</h2>
+        <h3>6.1 Módulo de Autenticación</h3>
+        <p>Solicita credenciales y establece una conexión segura con SQL Server.</p>
+
+        <h3>6.2 Módulo de Descompresión</h3>
+        <p>Permite seleccionar una carpeta y descomprimir archivos ZIP, registrando los archivos procesados en una tabla de control.</p>
+
+        <h3>6.3 Módulo de Filtrado y Procesamiento</h3>
+        <p>Filtra y transforma los datos de acuerdo a criterios específicos definidos en el archivo <code>config.ini</code> antes de cargarlos en SQL Server.</p>
+
+        <h3>6.4 Módulo de Configuración</h3>
+        <p>Permite al usuario personalizar las rutas de archivos, criterios de filtrado y configuraciones de base de datos mediante <code>config.ini</code>.</p>
+    </section>
+
+    <section>
+        <h2 class="section-title">Flujo del Sistema</h2>
+        <ol class="list-group list-group-flush">
+            <li class="list-group-item">Inicio de sesión y autenticación.</li>
+            <li class="list-group-item">Descompresión de archivos ZIP.</li>
+            <li class="list-group-item">Filtrado y procesamiento de datos.</li>
+            <li class="list-group-item">Carga de datos en la base de datos.</li>
+            <li class="list-group-item">Modificación de configuración.</li>
+        </ol>
+    </section>
+
+    <section>
+        <h2 class="section-title">Archivos y Configuración</h2>
+        <p>El archivo <code>config.ini</code> permite configurar la conexión a SQL Server, las rutas de archivos y criterios de filtrado.</p>
+        <div class="code-block">
+            [Database]<br>
+            server = 127.0.0.1<br>
+            database = REDEBAN<br>
+            table_data = TablaDatos<br>
+            table_control = TablaControl<br>
+            table_control_descompresion = TablaControlDescompresion<br><br>
+            [Paths]<br>
+            source_path = ./input<br>
+            destination_path = ./output<br>
+            file_keyword = reporte<br><br>
+            [Filters]<br>
+            filtro_1_tipo_producto = ProductoX<br>
+            filtro_1_privada = PrivadaA, PrivadaB<br>
+            filtro_2_tipo_producto = ProductoY<br>
+            filtro_2_tipo_operacion = OperacionZ
+        </div>
+    </section>
+
+    <section>
+        <h2 class="section-title">Pruebas y Validación</h2>
+        <p>Las pruebas de este sistema se centran en verificar el correcto funcionamiento de cada módulo y la integridad de los datos en la base de datos.</p>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item">Pruebas de autenticación y conexión.</li>
+            <li class="list-group-item">Pruebas de descompresión y manejo de duplicados.</li>
+            <li class="list-group-item">Pruebas de procesamiento y carga de datos con diferentes escenarios de filtros.</li>
+            <li class="list-group-item">Pruebas de modificación y guardado de configuración.</li>
+        </ul>
+    </section>
+
+    <section>
+        <h2 class="section-title">Conclusiones</h2>
+        <p>Este sistema permite una gestión automatizada de archivos de datos hacia SQL Server, con una interfaz intuitiva y un sistema de control de errores y duplicados robusto, facilitando su implementación en entornos de producción para el cliente REDEBAN.</p>
+    </section>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
